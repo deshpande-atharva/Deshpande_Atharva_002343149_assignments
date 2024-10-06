@@ -3,7 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
 package ui;
-
+//imported everything which was not present here
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -189,13 +189,7 @@ public class ViewPersonJPanel extends javax.swing.JPanel {
             WorkArea.add("UpdatePersonJPanel",create);
             CardLayout layout=(CardLayout)WorkArea.getLayout();
             layout.next(WorkArea);
-        }
-        
-        
-        
-        
-        
-        
+        }  
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
