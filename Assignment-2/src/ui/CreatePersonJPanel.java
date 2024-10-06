@@ -390,6 +390,8 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
         
         
         //after setting show user a person is created
+        
+        
         JOptionPane.showMessageDialog(this, "Person Created Sucessfully", "SUCCESS", JOptionPane.WARNING_MESSAGE);
         DefaultTableModel model = (DefaultTableModel)tblViewPerson.getModel();
         Object[] rowData = new Object[] { newperson.getFirstname(), newperson.getLastname(), newperson.getAge() };
