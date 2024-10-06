@@ -181,6 +181,8 @@ public class MainJFrame extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void generateDemo() {
+        
+        //generate demodata
         Person newPerson=new Person();
         newPerson= personDirectory.addPerson(newPerson);
         newPerson.setFirstname("Atharva");
