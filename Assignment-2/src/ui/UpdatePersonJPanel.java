@@ -5,6 +5,7 @@
 package ui;
 
 import java.awt.CardLayout;
+import java.awt.Color;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -17,24 +18,89 @@ import model.PersonDirectory;
  *
  * @author athar
  */
-public class CreatePersonJPanel extends javax.swing.JPanel {
+public class UpdatePersonJPanel extends javax.swing.JPanel {
     PersonDirectory personDirectory;
     Person person;
     JPanel WorkArea;
+    private Address homeaddress;
+    private Address workaddress;
     private JTable tblViewPerson;
+    private ViewPersonJPanel viewPanel;
 
     /**
-     * Creates new form CreatePersonJPanel
+     * Creates new form UpdatePersonJPanel
      */
-    public CreatePersonJPanel(JPanel WorkArea, PersonDirectory personDirectory, Person person) {
+    public UpdatePersonJPanel(ViewPersonJPanel viewPanel,JPanel WorkArea, PersonDirectory personDirectory, Person person, Address homeaddress, Address workaddress,JTable tblViewPerson) {
         initComponents();
         this.personDirectory=personDirectory;
+        this.viewPanel = viewPanel;
         this.person=person;
         this.WorkArea=WorkArea;
-        tblViewPerson = new JTable(new DefaultTableModel(
-        new Object[][] {}, // Initially empty data
-        new String[] {"First Name", "Last Name", "Age"} // Column headers
-    ));
+        this.workaddress= new Address();
+        this.homeaddress= new Address();
+        this.tblViewPerson = tblViewPerson;
+        //to populate the JPanel with the Person data
+        populateFields();
+        setFieldsReadOnly();
+        System.out.println("txtFirstName editable: " + txtFirstName.isEditable());
+    }
+    private void setFieldsReadOnly() {
+        // Make each text field read-only
+        txtFirstName.setEditable(false);
+        txtLastName.setEditable(false);
+        txtAge.setEditable(false);
+        txtSocialNumber.setEditable(false);
+        txtStreetName.setEditable(false);
+        txtUnitNumber.setEditable(false);
+        txtCity.setEditable(false);
+        txtState.setEditable(false);
+        txtZip.setEditable(false);
+        txtPhoneNumber.setEditable(false);
+        txtWorkStreetName.setEditable(false);
+        txtWorkCity.setEditable(false);
+        txtWorkState.setEditable(false);
+        txtWorkZip.setEditable(false);
+        txtWorkPhoneNumber.setEditable(false);
+        Color grayForeground = new Color(150, 150, 150);
+        
+        
+        txtFirstName.setBackground(grayForeground);
+        txtLastName.setBackground(grayForeground);
+        txtAge.setBackground(grayForeground);
+        txtSocialNumber.setBackground(grayForeground);
+        txtStreetName.setBackground(grayForeground);
+        txtUnitNumber.setBackground(grayForeground);
+        txtCity.setBackground(grayForeground);
+        txtState.setBackground(grayForeground);
+        txtZip.setBackground(grayForeground);
+        txtPhoneNumber.setBackground(grayForeground);
+        txtWorkStreetName.setBackground(grayForeground);
+        txtWorkUnitNumber.setBackground(grayForeground);
+        txtWorkCity.setBackground(grayForeground);
+        txtWorkState.setBackground(grayForeground);
+        txtWorkZip.setBackground(grayForeground);
+        txtWorkPhoneNumber.setBackground(grayForeground);
+    }
+    private void populateFields(){
+        txtFirstName.setText(person.getFirstname());
+        txtLastName.setText(person.getLastname());
+        txtAge.setText(Integer.toString(person.getAge()));
+        txtSocialNumber.setText(person.getSocialNumber());
+        txtStreetName.setText(person.getHomeAddress().getStreetAddress());
+        txtUnitNumber.setText(Integer.toString(person.getHomeAddress().getUnitName()));
+        txtCity.setText(person.getHomeAddress().getCity());
+        txtState.setText(person.getHomeAddress().getState());
+        txtZip.setText(Integer.toString(person.getHomeAddress().getZipCode()));
+        txtPhoneNumber.setText(person.getHomeAddress().getPhoneNumber());
+        
+        
+        txtWorkStreetName.setText(person.getWorkAddress().getStreetAddress());
+        txtWorkUnitNumber.setText(Integer.toString(person.getWorkAddress().getUnitName()));
+        txtWorkCity.setText(person.getWorkAddress().getCity());
+        txtWorkState.setText(person.getWorkAddress().getState());
+        txtWorkZip.setText(Integer.toString(person.getWorkAddress().getZipCode()));
+        txtWorkPhoneNumber.setText(person.getWorkAddress().getPhoneNumber());
+
     }
 
     /**
@@ -46,14 +112,17 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblMainTitle = new javax.swing.JLabel();
-        lblFirstName = new javax.swing.JLabel();
-        lblLastName = new javax.swing.JLabel();
-        lblSocialNumber = new javax.swing.JLabel();
-        lblAge = new javax.swing.JLabel();
-        txtFirstName = new javax.swing.JTextField();
-        txtLastName = new javax.swing.JTextField();
-        txtAge = new javax.swing.JTextField();
+        txtState = new javax.swing.JTextField();
+        lblPhoneNumber = new javax.swing.JLabel();
+        txtZip = new javax.swing.JTextField();
+        lblZip = new javax.swing.JLabel();
+        txtPhoneNumber = new javax.swing.JTextField();
+        lblWorkUnitNumber = new javax.swing.JLabel();
+        txtWorkUnitNumber = new javax.swing.JTextField();
+        lblWorkCity = new javax.swing.JLabel();
+        txtWorkCity = new javax.swing.JTextField();
+        lblWorkState = new javax.swing.JLabel();
+        btnUpdate = new javax.swing.JButton();
         txtSocialNumber = new javax.swing.JTextField();
         lblHomeTitle = new javax.swing.JLabel();
         lblStreetName = new javax.swing.JLabel();
@@ -61,41 +130,45 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
         lblUnitNumber = new javax.swing.JLabel();
         txtUnitNumber = new javax.swing.JTextField();
         lblCity = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        txtWorkState = new javax.swing.JTextField();
+        lblMainTitle = new javax.swing.JLabel();
+        lblWorkPhoneNumber = new javax.swing.JLabel();
+        lblFirstName = new javax.swing.JLabel();
+        txtWorkZip = new javax.swing.JTextField();
+        lblLastName = new javax.swing.JLabel();
+        lblWorkZip = new javax.swing.JLabel();
+        lblSocialNumber = new javax.swing.JLabel();
+        txtWorkPhoneNumber = new javax.swing.JTextField();
+        lblAge = new javax.swing.JLabel();
+        lblWorkTitle = new javax.swing.JLabel();
+        txtFirstName = new javax.swing.JTextField();
+        lblWorkStreetName = new javax.swing.JLabel();
+        txtLastName = new javax.swing.JTextField();
+        txtWorkStreetName = new javax.swing.JTextField();
+        txtAge = new javax.swing.JTextField();
         txtCity = new javax.swing.JTextField();
         lblState = new javax.swing.JLabel();
-        txtState = new javax.swing.JTextField();
-        lblPhoneNumber = new javax.swing.JLabel();
-        txtZip = new javax.swing.JTextField();
-        lblZip = new javax.swing.JLabel();
-        txtPhoneNumber = new javax.swing.JTextField();
-        txtWorkState = new javax.swing.JTextField();
-        lblWorkPhoneNumber = new javax.swing.JLabel();
-        txtWorkZip = new javax.swing.JTextField();
-        lblWorkZip = new javax.swing.JLabel();
-        txtWorkPhoneNumber = new javax.swing.JTextField();
-        lblWorkTitle = new javax.swing.JLabel();
-        lblWorkStreetName = new javax.swing.JLabel();
-        txtWorkStreetName = new javax.swing.JTextField();
-        lblWorkUnitNumber = new javax.swing.JLabel();
-        txtWorkUnitNumber = new javax.swing.JTextField();
-        lblWorkCity = new javax.swing.JLabel();
-        txtWorkCity = new javax.swing.JTextField();
-        lblWorkState = new javax.swing.JLabel();
-        btnCreate = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
+        btnSave = new javax.swing.JButton();
 
-        setBackground(new java.awt.Color(204, 204, 255));
+        setBackground(new java.awt.Color(255, 102, 102));
 
-        lblMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblMainTitle.setText("Create Person");
+        lblPhoneNumber.setText("Phone Number");
 
-        lblFirstName.setText("First Name");
+        lblZip.setText("Zip");
 
-        lblLastName.setText("Last Name");
+        lblWorkUnitNumber.setText("Unit Number");
 
-        lblSocialNumber.setText("Social Security Number");
+        lblWorkCity.setText("City");
 
-        lblAge.setText("Age");
+        lblWorkState.setText("State");
+
+        btnUpdate.setText("Update");
+        btnUpdate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUpdateActionPerformed(evt);
+            }
+        });
 
         txtSocialNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,38 +185,39 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
 
         lblCity.setText("City");
 
-        lblState.setText("State");
+        btnBack.setText("<<<Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
-        lblPhoneNumber.setText("Phone Number");
-
-        lblZip.setText("Zip");
+        lblMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblMainTitle.setText("Update Person");
 
         lblWorkPhoneNumber.setText("Phone Number");
 
+        lblFirstName.setText("First Name");
+
+        lblLastName.setText("Last Name");
+
         lblWorkZip.setText("Zip");
+
+        lblSocialNumber.setText("Social Security Number");
+
+        lblAge.setText("Age");
 
         lblWorkTitle.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblWorkTitle.setText("Work Address");
 
         lblWorkStreetName.setText("Street Address");
 
-        lblWorkUnitNumber.setText("Unit Number");
+        lblState.setText("State");
 
-        lblWorkCity.setText("City");
-
-        lblWorkState.setText("State");
-
-        btnCreate.setText("Create Person");
-        btnCreate.addActionListener(new java.awt.event.ActionListener() {
+        btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCreateActionPerformed(evt);
-            }
-        });
-
-        btnBack.setText("<<<Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
+                btnSaveActionPerformed(evt);
             }
         });
 
@@ -169,6 +243,9 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
                                     .addComponent(txtAge, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(lblWorkZip, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(59, 59, 59))
                                             .addGroup(layout.createSequentialGroup()
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                     .addComponent(txtWorkZip, javax.swing.GroupLayout.Alignment.LEADING)
@@ -179,10 +256,7 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
                                                             .addComponent(lblWorkStreetName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                             .addComponent(lblWorkTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                         .addComponent(lblWorkCity, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(40, 40, 40))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(lblWorkZip, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(59, 59, 59)))
+                                                .addGap(40, 40, 40)))
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                 .addComponent(txtWorkPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,10 +271,10 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
                             .addComponent(txtSocialNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(94, 94, 94))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
+                        .addContainerGap()
                         .addComponent(btnBack)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblMainTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 572, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblMainTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,22 +297,25 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
                         .addGap(59, 59, 59)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                            .addComponent(txtState, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtUnitNumber, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblState, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(149, 149, 149))
+                        .addComponent(btnSave)
+                        .addGap(140, 140, 140)
+                        .addComponent(btnUpdate)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblUnitNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(178, 178, 178)))
-                .addGap(333, 333, 333))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(400, 400, 400)
-                .addComponent(btnCreate)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
+                                    .addComponent(txtState, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtUnitNumber, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblState, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(149, 149, 149))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblUnitNumber, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(178, 178, 178)))
+                        .addGap(333, 333, 333))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,13 +324,10 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMainTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnBack))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(lblFirstName))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblLastName)))
+                .addGap(34, 34, 34)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblLastName)
+                    .addComponent(lblFirstName))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtLastName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -321,110 +395,88 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtWorkZip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtWorkPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(btnCreate)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnSave)
+                    .addComponent(btnUpdate))
                 .addGap(101, 101, 101))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        //Change the background and editible to true
+        setFieldsEditable();
+
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void txtSocialNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSocialNumberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSocialNumberActionPerformed
 
-    private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
-        String firstname=txtFirstName.getText();
-        String lastName=txtLastName.getText();
-        String socialNumber=txtSocialNumber.getText();
-        int age=Integer.parseInt(txtAge.getText());
+        Person person = new Person();
+        String firstName = txtFirstName.getText();
+        String lastName = txtLastName.getText();
+        int age = Integer.parseInt(txtAge.getText()); // Convert age to int
+        String socialNumber = txtSocialNumber.getText();
+        String streetAddress = txtStreetName.getText();
+        Integer unitNumber = Integer.valueOf(txtUnitNumber.getText());
+        String city = txtCity.getText();
+        String state = txtState.getText();
+        Integer zipCode = Integer.valueOf(txtZip.getText());
+        String phoneNumber = txtPhoneNumber.getText();
+        String workstreetAddress = txtWorkStreetName.getText();
+        Integer workunitNumber = Integer.valueOf(txtWorkUnitNumber.getText());
+        String workcity = txtWorkCity.getText();
+        String workstate = txtWorkState.getText();
+        Integer workzipCode = Integer.valueOf(txtWorkZip.getText());
+        String workphoneNumber = txtWorkPhoneNumber.getText();
         
-        String streetname=txtStreetName.getText();
-        int unitnumber=Integer.parseInt(txtUnitNumber.getText());
-        String city=txtCity.getText();
-        String state=txtState.getText();
-        int zipCode=Integer.parseInt(txtZip.getText());
-        String phoneNumber=txtPhoneNumber.getText();
-           
-        //get the valuses of work address
-        String workstreetAddress=txtWorkStreetName.getText();         
-        int workunitnumber=Integer.parseInt(txtWorkUnitNumber.getText());
-        String workcity=txtWorkCity.getText();
-        String workstate=txtWorkState.getText();
-        int workzipCode=Integer.parseInt(txtWorkZip.getText());
-        String workphoneNumber=txtWorkPhoneNumber.getText();
-        //after getting the values validate for not null
-        if (txtFirstName.getText().isBlank() || txtLastName.getText().isBlank() || txtSocialNumber.getText().isBlank() || 
-            txtAge.getText().isBlank() || txtStreetName.getText().isBlank() || txtUnitNumber.getText().isBlank() || 
-            txtCity.getText().isBlank() || txtState.getText().isBlank() || txtZip.getText().isBlank() || 
-            txtPhoneNumber.getText().isBlank() || txtWorkStreetName.getText().isBlank() || 
-            txtWorkUnitNumber.getText().isBlank() || txtWorkCity.getText().isBlank() || 
-            txtWorkState.getText().isBlank() || txtWorkZip.getText().isBlank() || 
-            txtWorkPhoneNumber.getText().isBlank()) {
-    
-            // Return or show a message if any field is empty
-            JOptionPane.showMessageDialog(this, "Please fill in all the fields.", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        //after getting all the values we will now create a new person and fill it with this data.  
-        Person newperson=personDirectory.addPerson(person);
-        newperson.setFirstname(firstname);
-        newperson.setLastname(lastName);
-        newperson.setAge(age);
-        newperson.setSocialNumber(socialNumber);
+        person.setFirstname(firstName);
+        person.setLastname(lastName);
+        person.setAge(age);
+        person.setSocialNumber(socialNumber);
+        person.getHomeAddress().setStreetAddress(streetAddress);
+        person.getHomeAddress().setZipCode(zipCode);
+        person.getHomeAddress().setCity(city);
+        person.getHomeAddress().setState(state);
+        person.getHomeAddress().setUnitName(unitNumber);
+        person.getHomeAddress().setPhoneNumber(phoneNumber);
+        person.getWorkAddress().setStreetAddress(workstreetAddress);
+        person.getWorkAddress().setZipCode(workzipCode);
+        person.getWorkAddress().setCity(workcity);
+        person.getWorkAddress().setState(workstate);
+        person.getWorkAddress().setUnitName(workunitNumber);
+        person.getWorkAddress().setPhoneNumber(workphoneNumber); 
         
-        //setting the home adress.
-        newperson.getHomeAddress().setStreetAddress(streetname);
-        newperson.getHomeAddress().setUnitName(unitnumber);
-        newperson.getHomeAddress().setCity(city);
-        newperson.getHomeAddress().setState(state);
-        newperson.getHomeAddress().setZipCode(zipCode);
-        newperson.getHomeAddress().setPhoneNumber(phoneNumber);
+        boolean success = personDirectory.updatePerson(person);
+        if (success) {
+        // Show success message
+        JOptionPane.showMessageDialog(this, "Person updated successfully!");
+        setFieldsReadOnly();
+        System.out.println(zipCode);
         
-        //setting the work address
-        newperson.getWorkAddress().setStreetAddress(workstreetAddress);
-        newperson.getWorkAddress().setUnitName(workunitnumber);
-        newperson.getWorkAddress().setCity(workcity);
-        newperson.getWorkAddress().setState(workstate);
-        newperson.getWorkAddress().setZipCode(workzipCode);
-        newperson.getWorkAddress().setPhoneNumber(workphoneNumber);
+        populateTable();//this is unable to refresh here
+    } else {
+        JOptionPane.showMessageDialog(this, "Error updating person. Person not found.");
+      }
+      
         
-        
-        //after setting show user a person is created
-        JOptionPane.showMessageDialog(this, "Person Created Sucessfully", "SUCCESS", JOptionPane.WARNING_MESSAGE);
-        DefaultTableModel model = (DefaultTableModel)tblViewPerson.getModel();
-        Object[] rowData = new Object[] { newperson.getFirstname(), newperson.getLastname(), newperson.getAge() };
-        model.addRow(rowData);
-        
-        //clean the form
-        txtFirstName.setText("");
-        txtLastName.setText("");
-        txtSocialNumber.setText("");
-        txtAge.setText(null);
-        txtZip.setText(null);
-        txtWorkZip.setText(null);
-        txtPhoneNumber.setText("");
-        txtWorkPhoneNumber.setText("");
-        txtStreetName.setText("");
-        txtWorkStreetName.setText("");
-        txtCity.setText("");
-        txtWorkCity.setText("");
-        txtState.setText("");
-        txtWorkState.setText("");
-        txtUnitNumber.setText(null);
-        txtWorkUnitNumber.setText(null);   
-    }//GEN-LAST:event_btnCreateActionPerformed
+    }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         WorkArea.remove(this);
         CardLayout layout=(CardLayout)WorkArea.getLayout();
-        layout.previous(WorkArea);  
+        layout.previous(WorkArea);
     }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnCreate;
+    private javax.swing.JButton btnSave;
+    private javax.swing.JButton btnUpdate;
     private javax.swing.JLabel lblAge;
     private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblFirstName;
@@ -461,4 +513,68 @@ public class CreatePersonJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtWorkZip;
     private javax.swing.JTextField txtZip;
     // End of variables declaration//GEN-END:variables
+
+    private void setFieldsEditable() {
+    txtFirstName.setEditable(true);
+    txtLastName.setEditable(true);
+    txtAge.setEditable(true);
+    txtSocialNumber.setEditable(true);
+    txtStreetName.setEditable(true);
+    txtUnitNumber.setEditable(true);
+    txtCity.setEditable(true);
+    txtState.setEditable(true);
+    txtZip.setEditable(true);
+    txtPhoneNumber.setEditable(true);
+    txtWorkStreetName.setEditable(true);
+    txtWorkUnitNumber.setEditable(true);
+    txtWorkCity.setEditable(true);
+    txtWorkState.setEditable(true);
+    txtWorkZip.setEditable(true);
+    txtWorkPhoneNumber.setEditable(true);
+    Color whiteBackground = Color.WHITE;
+    txtFirstName.setBackground(whiteBackground);
+    txtLastName.setBackground(whiteBackground);
+    txtAge.setBackground(whiteBackground);
+    txtSocialNumber.setBackground(whiteBackground);
+    txtStreetName.setBackground(whiteBackground);
+    txtUnitNumber.setBackground(whiteBackground);
+    txtCity.setBackground(whiteBackground);
+    txtState.setBackground(whiteBackground);
+    txtZip.setBackground(whiteBackground);
+    txtPhoneNumber.setBackground(whiteBackground);
+    txtWorkStreetName.setBackground(whiteBackground);
+    txtWorkUnitNumber.setBackground(whiteBackground);
+    txtWorkCity.setBackground(whiteBackground);
+    txtWorkState.setBackground(whiteBackground);
+    txtWorkZip.setBackground(whiteBackground);
+    txtWorkPhoneNumber.setBackground(whiteBackground);
+    
+    }
+
+    private void populateTable() {
+        DefaultTableModel model = (DefaultTableModel) tblViewPerson.getModel();
+        
+        // Clear the existing rows in the table
+        model.setRowCount(0);
+        
+        // Iterate through the list of people in the person directory
+        for (Person p : personDirectory.getPersonList()) {
+            // Create an array of objects for each row
+            Object[] row = new Object[6];
+            row[0] = p.getFirstname();  // First Name
+            row[1] = p.getLastname();   // Last Name
+            row[2] = p.getHomeAddress().getCity(); // Home City
+            row[3] = p.getHomeAddress().getZipCode(); // Home Zip
+            row[4] = p.getWorkAddress().getCity();  // Work City
+            row[5] = p.getWorkAddress().getZipCode();  // Work Zip
+            
+            // Add the row to the table model
+            model.addRow(row);
+        }
+    }
+
+
+
+
+
 }

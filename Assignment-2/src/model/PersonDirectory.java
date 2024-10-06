@@ -16,22 +16,43 @@ public class PersonDirectory {
     
     //constructor
     public PersonDirectory(){
-        personList= new ArrayList<Person>();
+        personList= new ArrayList<>(); //changeed from newArrayList<Person>();
     }
-    
     //adds a new person
     public Person addPerson(Person person) {
         Person newPerson= new Person();
         personList.add(newPerson);
         return newPerson;
+    }   
+    
+    public Boolean updatePerson(Person updatedPerson){
+        for (int i = 0; i < personList.size(); i++) {
+            Person existingPerson = personList.get(i);
+            // Check if the unique identifier matches
+            if (existingPerson.getSocialNumber().equals(updatedPerson.getSocialNumber())) {
+                // Update existing person's fields
+                existingPerson.setFirstname(updatedPerson.getFirstname());
+                existingPerson.setLastname(updatedPerson.getLastname());
+                existingPerson.setAge(updatedPerson.getAge());
+                existingPerson.setSocialNumber(updatedPerson.getSocialNumber());
+                existingPerson.getHomeAddress().setStreetAddress(updatedPerson.getHomeAddress().getStreetAddress());
+                existingPerson.getHomeAddress().setUnitName(updatedPerson.getHomeAddress().getUnitName());
+                existingPerson.getHomeAddress().setPhoneNumber(updatedPerson.getHomeAddress().getPhoneNumber());
+                existingPerson.getHomeAddress().setCity(updatedPerson.getHomeAddress().getCity());
+                existingPerson.getHomeAddress().setState(updatedPerson.getHomeAddress().getState());
+                return true; // Indicate that the update was successful
+            }
+        }
+        return false;// Indicate that the person was not found for updating
     }
     
     //removes a person
-    public void removePerson(int index) {
-        if (index >= 0 && index < personList.size()) {
-            personList.remove(index);
-        } else {
-            System.out.println("Invalid index.");
+    public void removePerson(Person person) {
+        if (personList.contains(person)) {
+        personList.remove(person);
+        }
+        else {
+        System.out.println("Person not found.");
         }
     }
     //return the whole list to display in table
@@ -39,34 +60,13 @@ public class PersonDirectory {
         return personList;
     }
     
-    public Person findPersonByFirstName(String firstName) {
+    public Person findPerson(String searchData) {
         for (Person person : personList) {
-            if (person.getFirstname().equals(firstName)) {
+            if (person.getFirstname().equals(searchData)|| person.getLastname().equals(searchData)||person.getHomeAddress().getStreetAddress().equals(searchData)) {
                 return person;
             }
         }
         return null;
     }
-    public Person findPersonByLastName(String lastName) {
-        for (Person person : personList) {
-            if (person.getLastname().equals(lastName)) {
-                return person;
-            }
-        }
-        return null;
-    }
-     public Person findPersonByStreetAddress(String streetAddress) {
-        for (Person person : personList) {
-            // Check both home and work address
-            if (person.getHomeAddress() != null && person.getHomeAddress().getStreetAddress().equals(streetAddress)) {
-                return person; // Return person if home address matches
-            } else if (person.getWorkAddress() != null && person.getWorkAddress().getStreetAddress().equals(streetAddress)) {
-                return person; // Return person if work address matches
-            }
-        }
-        return null;
-    }
-    
-    
-    
+  
 }

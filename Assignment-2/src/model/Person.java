@@ -1,6 +1,6 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ k n* Clicbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package model;
 
@@ -13,9 +13,13 @@ public class Person {
     private String lastName;
     private int age;
     private String socialNumber;
-    Address homeAddress;
-    Address workAddress;
-
+    private Address homeAddress;
+    private Address workAddress;
+    
+    public Person(){
+        this.homeAddress= new Address();
+        this.workAddress= new Address();
+    }
     public String getLastname() {
         return lastName;
     }
@@ -49,7 +53,7 @@ public class Person {
     }
 
     public Address getHomeAddress() {
-        return homeAddress;
+        return this.homeAddress;
     }
 
     public void setHomeAddress(Address homeAddress) {
@@ -57,7 +61,7 @@ public class Person {
     }
 
     public Address getWorkAddress() {
-        return workAddress;
+        return this.workAddress;
     }
 
     public void setWorkAddress(Address workAddress) {
