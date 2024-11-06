@@ -256,14 +256,14 @@ public class Info5001UniversityExample {
         }
 
 
-        // for (StudentProfile sp : department.getStudentDirectory().getAllStudents()){
-        //     ArrayList<SeatAssignment> seatassignments = sp.getCurrentCourseLoad().getSeatAssignment();
-        //     for (SeatAssignment sa : seatassignments){
-        //         System.out.println(sp.getID() + " " + sa.getAssociatedCourse().getName() + " " + sa.getGrade() 
-        //                 + " " + sa.GetCourseStudentScore() / sa.getCreditHours() 
-        //                 + " " + sa.getAssociatedCourse().getCoursePrice());
-        //     }
-        // }
+        for (StudentProfile sp : department.getStudentDirectory().getAllStudents()){
+            ArrayList<SeatAssignment> seatassignments = sp.getCurrentCourseLoad().getSeatAssignment();
+            for (SeatAssignment sa : seatassignments){
+                System.out.println(sp.getID() + " " + sa.getAssociatedCourse().getName() + " " + sa.getGrade() 
+                        + " " + sa.GetCourseStudentScore() / sa.getCreditHours() 
+                        + " " + sa.getAssociatedCourse().getCoursePrice());
+            }
+        }
  
         
         
