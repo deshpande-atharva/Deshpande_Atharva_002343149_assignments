@@ -13,6 +13,7 @@ import info5100.university.example.CourseSchedule.CourseLoad;
 import info5100.university.example.CourseSchedule.CourseOffer;
 import info5100.university.example.CourseSchedule.CourseSchedule;
 import info5100.university.example.CourseSchedule.SeatAssignment;
+import info5100.university.example.Degree.Degree;
 import info5100.university.example.Department.Department;
 import info5100.university.example.Persona.Faculty.FacultyDirectory;
 import info5100.university.example.Persona.Faculty.FacultyProfile;
@@ -65,45 +66,54 @@ public class Info5001UniversityExample {
         Course newCourse9=coursecatalog.newCourse("Carrer Management", "INFO12100", 56);
         Course newCourse10=coursecatalog.newCourse("Computer Networks", "INFO113100", 78);
 
-        department.addCoreCourse(course);
+        Degree d = new Degree("Master in Science");
 
-        department.addElectiveCourse(course2);
-        department.addElectiveCourse(newCourse3);
-        department.addElectiveCourse(newCourse3);
-        department.addElectiveCourse(newCourse4);
-        department.addElectiveCourse(newCourse5);
-        department.addElectiveCourse(newCourse6);
-        department.addElectiveCourse(newCourse7);
+        d.addCoreCourse(course);
+
+        d.addElectiveCourse(course2);
+        d.addElectiveCourse(newCourse3);
+        d.addElectiveCourse(newCourse3);
+        d.addElectiveCourse(newCourse4);
+        d.addElectiveCourse(newCourse5);
+        d.addElectiveCourse(newCourse6);
+        d.addElectiveCourse(newCourse7);
 
 //      now lets schedule class to run for spring 2024        
         CourseSchedule courseschedule = department.newCourseSchedule("Spring 2024");
 
         CourseOffer courseoffer = courseschedule.newCourseOffer("info 6205");
+        if (courseoffer==null)return;
+        courseoffer.generatSeats(10);
         CourseOffer courseoffer2 = courseschedule.newCourseOffer("info 5100");
+        if (courseoffer2==null)return;
+        courseoffer2.generatSeats(10);
 
         CourseOffer newcourseoffer3 = courseschedule.newCourseOffer("INFO3100");
+        if (newcourseoffer3==null)return;
         newcourseoffer3.generatSeats(10);
         CourseOffer newcourseoffer4 = courseschedule.newCourseOffer("INFO4100");
+        if (newcourseoffer4==null)return;
         newcourseoffer4.generatSeats(10);
         CourseOffer newcourseoffer5 = courseschedule.newCourseOffer("INFO5100");
+        if (newcourseoffer5==null)return;
         newcourseoffer5.generatSeats(10);
         CourseOffer newcourseoffer6= courseschedule.newCourseOffer("INFO7100");
+        if (newcourseoffer6==null)return;
         newcourseoffer6.generatSeats(10);
         CourseOffer newcourseoffer8 = courseschedule.newCourseOffer("INFO8100");
+        if (newcourseoffer8==null)return;
         newcourseoffer8.generatSeats(10);
         CourseOffer newcourseoffer9 = courseschedule.newCourseOffer("INFO9100");
+        if (newcourseoffer9==null)return;
         newcourseoffer9.generatSeats(10);
         CourseOffer newcourseoffer12 = courseschedule.newCourseOffer("INFO12100");
+        if (newcourseoffer12==null)return;
         newcourseoffer12.generatSeats(10);
         CourseOffer newcourseoffer13 = courseschedule.newCourseOffer("INFO113100");
-        newcourseoffer13.generatSeats(10);
+        if (newcourseoffer13==null)return;
+        newcourseoffer13.generatSeats(10);        
 
-        if (courseoffer==null)return; 
-        
-        courseoffer.generatSeats(30); // allow for 30 open seats in the class
-        courseoffer2.generatSeats(50); // allow for 30 open seats in the class
-
-//      Create teacher for class
+        //Create teacher for class
 
         Person person1 = persondirectory.newPerson("01123022"); //person for teacher role                  
         Person person2 = persondirectory.newPerson("011230222"); 
