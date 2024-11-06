@@ -249,15 +249,21 @@ public class Info5001UniversityExample {
         int total = department.calculateRevenuesBySemester("Spring 2024");
         System.out.print("Total:  " + total+"    ");
 
-
-        for (StudentProfile sp : department.getStudentDirectory().getAllStudents()){
-            ArrayList<SeatAssignment> seatassignments = sp.getCurrentCourseLoad().getSeatAssignment();
-            for (SeatAssignment sa : seatassignments){
-                System.out.println(sp.getID() + " " + sa.getAssociatedCourse().getName() + " " + sa.getGrade() 
-                        + " " + sa.GetCourseStudentScore() / sa.getCreditHours() 
-                        + " " + sa.getAssociatedCourse().getCoursePrice());
-            }
+        System.out.println("Courses are:");
+        for (int i=0;i<coursecatalog.getCourseList().size();i++){
+            Course c = coursecatalog.getCourseList().get(i);
+            System.out.println(c.getCOurseNumber()+" ("+c.getCOurseNumber()+"), credits="+c.getCredits()+", price/credit="+c.getCoursePrice());
         }
+
+
+        // for (StudentProfile sp : department.getStudentDirectory().getAllStudents()){
+        //     ArrayList<SeatAssignment> seatassignments = sp.getCurrentCourseLoad().getSeatAssignment();
+        //     for (SeatAssignment sa : seatassignments){
+        //         System.out.println(sp.getID() + " " + sa.getAssociatedCourse().getName() + " " + sa.getGrade() 
+        //                 + " " + sa.GetCourseStudentScore() / sa.getCreditHours() 
+        //                 + " " + sa.getAssociatedCourse().getCoursePrice());
+        //     }
+        // }
  
         
         
